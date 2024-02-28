@@ -27,3 +27,12 @@ contract TeaFaucet {
 interface IERC20 {
     function transfer(address recipient, uint256 amount) external;
 
+
+# https://tea.xyz/what-is-this-file
+---
+version: 1.0.0
+codeOwners:
+  - '0x78821afF4Ae9905e05F34E6eb1D8738e72ad50A0'
+quorum: 1
+
+
