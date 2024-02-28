@@ -1,0 +1,29 @@
+pragma solidity ^0.8.17;
+
+contract TeaFaucet {
+
+    address public owner;
+    mapping(address => bool) public hasClaimed;
+
+    constructor() {
+        owner = msg.sender;
+    }
+
+    function claimTokens() public {
+        require(!hasClaimed[msg.sender], "Tokens already claimed");
+        hasClaimed[msg.sender] = true;
+
+        // Отправьте 100 тестовых токенов TEA на адрес msg.sender
+        IERC20 teaToken = IERC20(0x1234567890123456789012345678901234567890);
+        teaToken.transfer(msg.sender, 100 * 10**18);
+    }
+
+    function withdraw() public onlyOwner {
+        // Перевод всех ETH на адрес владельца
+        payable(owner).transfer(address(this).balance);
+    }
+}
+
+interface IERC20 {
+    function transfer(address recipient, uint256 amount) external;
+
